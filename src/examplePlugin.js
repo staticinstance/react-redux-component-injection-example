@@ -1,6 +1,4 @@
-const examplePlugin = `
-
-const styles = {}
+const examplePlugin = `const styles = {}
 
 styles.theremin = {
     height: 200,
@@ -67,7 +65,6 @@ React.createClass({
           </div>
       );
   }
-})
-`
+})`;
 
 export default examplePlugin;
