@@ -6,7 +6,7 @@ import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/markdown/markdown';
 import './css/codemirror.css';
 import { Plugin, PluginList } from "./Components"
-import exampleCode from "./exampleCode";
+import examplePlugin from "./examplePlugin";
 import createOscillator from './utils/createOscillator'
 
 const low = require('lowdb')
@@ -16,7 +16,13 @@ const db = low('db', { storage })
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {edit: false, conversationsTitle: "Conversations", messagesTitle: "Messages", contactsTitle: "Contacts", code: exampleCode};
+        this.state = {
+            edit: false,
+            conversationsTitle: "Conversations",
+            messagesTitle: "Messages",
+            contactsTitle: "Contacts",
+            code: examplePlugin
+        };
     }
     updateCode(newCode) {
         this.setState({
