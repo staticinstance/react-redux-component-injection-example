@@ -4,8 +4,6 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var PORT = process.env.PORT || 8080;
 
-console.log(PORT)
-
 module.exports = {
   cache: true,
   entry: [	
