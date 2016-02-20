@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
       saveLocal: (plugin) => {
           if(plugin){
               if(plugin.src.indexOf("style=") != -1){
-                  //alert("You are adding custom styles")
+                  alert("You are adding custom styles")
               }
 
               try{

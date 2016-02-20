@@ -7,7 +7,7 @@ class PluginList extends Component {
         return <div>
             {pluginStore.filter((item) => item.location === this.props.location).map((item) => {
                 const plugin = item;
-                return <Plugin key={item.id} id={item.id} plugin={item} {...this.props} />;
+                return <Plugin key={item.id} plugin={item} {...this.props} />;
             })}
         </div>
     }

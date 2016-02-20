@@ -5,6 +5,7 @@ import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/markdown/markdown';
 import '../css/codemirror.css';
+import { MenuItem } from 'react-bootstrap';
 
 class Plugin extends Component {
     constructor(props) {
@@ -29,35 +30,47 @@ class Plugin extends Component {
             edit: false
         });
     }
-    render() {
-        return (
-            <div style={{margin: "5px"}}>
-                <this.props.plugin.cmp axios={axios} key={this.props.id} {...this.props}/>
-                {this.state.edit && this.props.devMode ? <div>
-                    <br/>
-                    <Codemirror style={{"height":"300px", "width":"500px"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={{lineNumbers: true, mode: 'javascript'}} />
-                    <br/>
-                    <button
-                        style={{float: "right"}}
-                        onClick={() => {
+    getEditView(){
+        return (<div style={{margin: "5px"}}>
+            <this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+            {this.state.edit && this.props.devMode ? <div>
+                <br/>
+                <Codemirror style={{"height":"300px", "width":"500px"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={{lineNumbers: true, mode: 'javascript'}} />
+                <br/>
+                <button
+                    style={{float: "right"}}
+                    onClick={() => {
                              let plugin = this.props.plugin;
                              plugin.src = this.state.code;
                              this.props.saveLocal(plugin, this)}}>
-                        save
-                    </button>
-                    <br/><br/>
-                </div>
-                    : null}
-                {this.props.devMode ?
-                    !this.state.edit ?
-                        <div><br/>
-                            <button style={{float: "right"}} onClick={() => this.setState({edit: !this.state.edit}) }>edit</button>
-                            <br/><br/>
-                        </div>: null
-                    : null
-                }
+                    save
+                </button>
+                <br/><br/>
             </div>
-        )
+                : null}
+            {this.props.devMode ?
+                !this.state.edit ?
+                    <div><br/>
+                        <button style={{float: "right"}} onClick={() => this.setState({edit: !this.state.edit}) }>edit</button>
+                        <br/><br/>
+                    </div>: null
+                : null
+            }
+        </div>)
+    }
+    getDisplayView(){
+        return <this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+    }
+
+    getView(){
+        if(this.state.edit && this.props.devMode){
+            return this.getEditView();
+        }else{
+            return this.getDisplayView();
+        }
+    }
+    render() {
+        return this.getView()
     }
 }
 
