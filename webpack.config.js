@@ -4,7 +4,8 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var PORT = process.env.PORT || 8080;
 
-module.exports = {
+
+var config = {
   cache: true,
   entry: [
     "webpack-dev-server/client?http://localhost:" + PORT,
@@ -60,3 +61,10 @@ module.exports = {
     ]
   }
 }
+
+if (process.env.NODE_ENV === "production") {
+  config.entry.app = ["./src/main.jsx"]; // remove webpack-dev-server-artifacts
+}
+
+module.exports = config;
+
