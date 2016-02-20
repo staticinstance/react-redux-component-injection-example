@@ -7,6 +7,7 @@ import 'codemirror/mode/markdown/markdown';
 import './css/codemirror.css';
 import { Plugin, PluginList } from "./Components"
 import examplePlugin from "./examplePlugin";
+import exampleMenubarPlugin from "./exampleMenubarPlugin";
 import createOscillator from './utils/createOscillator'
 const low = require('lowdb')
 const storage = require('lowdb/browser')
@@ -22,7 +23,7 @@ class App extends Component {
             conversationsTitle: "Conversations",
             messagesTitle: "Messages",
             contactsTitle: "Contacts",
-            code: examplePlugin
+            code: ""
         };
     }
     updateCode(newCode) {
@@ -60,7 +61,7 @@ class App extends Component {
         return (
             <DropdownButton title="Create Plugin">
                 {LOCATIONS.map((location) => {
-                    return (<MenuItem onClick={ () => { this.setState({edit: !this.state.edit, location: location}) } }>
+                    return (<MenuItem onClick={ () => { this.setState({edit: true, location: location, code: location === "menubar" ? exampleMenubarPlugin : examplePlugin}) } }>
                     create {location} plugin
                     </MenuItem>)
                 })}
@@ -68,6 +69,7 @@ class App extends Component {
         );
     }
   render() {
+      console.log(exampleMenubarPlugin)
     const { onRegisterPlugin } = this.props;
       const options = {
           lineNumbers: true,
@@ -98,12 +100,12 @@ class App extends Component {
                   <div style={{float: "right"}}>
                       <br/>
                       <button onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null})} }>save</button>
+                      <button onClick={ () => { this.setState({edit: false, location: null})} }>close</button>
                   </div>
                   <br/><br/>
               </div>
               : null}
           </div>
-          <br/><br/>
           <div style={{clear: "both"}}>
               <br/><br/>
               {buttonsInstance}

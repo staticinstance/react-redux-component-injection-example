@@ -1,14 +1,4 @@
-const examplePlugin = `
-
-/*React.createClass({
-  render() {
-      return (
-          <this.props.MenuItem eventKey="4">Separated link</this.props.MenuItem>
-      );
-  }
-})*/
-
-const styles = {}
+const examplePlugin = `const styles = {}
 styles.theremin = {
     height: 200,
     width: 200,
