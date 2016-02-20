@@ -70,9 +70,7 @@ class Plugin extends Component {
             }
             </span>
     }
-
     getView(){
-        console.log('mode', this.props.devMode, this.state.edit)
         if(this.props.devMode && this.state.edit){
             return this.getEditView();
         }else if(this.props.devMode) {

@@ -69,7 +69,6 @@ class App extends Component {
         );
     }
   render() {
-      console.log(exampleMenubarPlugin)
     const { onRegisterPlugin } = this.props;
       const options = {
           lineNumbers: true,

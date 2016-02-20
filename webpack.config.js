@@ -6,7 +6,7 @@ var PORT = process.env.PORT || 8080;
 
 module.exports = {
   cache: true,
-  entry: [	
+  entry: [
     "webpack-dev-server/client?http://localhost:" + PORT,
     "webpack/hot/only-dev-server",
     "./src/main.jsx"
