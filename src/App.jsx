@@ -50,10 +50,16 @@ class App extends Component {
 
     renderDropdownButton(title, i) {
         return (
-            <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
+            <DropdownButton
+                bsStyle={title.toLowerCase()}
+                title={title}
+                key={i}
+                id={`dropdown-basic-${i}`}>
                 {this.props.pluginStore.filter((item) => item.location === "menubar").map((item) => {
                     const plugin = item;
-                    return <Plugin MenuItem={MenuItem} devMode={this.state.devMode} location="menubar"
+                    return <Plugin MenuItem={MenuItem}
+                                   devMode={this.state.devMode}
+                                   location="menubar"
                                    plugin={item} {...this.props} />
                 })}
             </DropdownButton>
@@ -64,10 +70,14 @@ class App extends Component {
         const LOCATIONS = ['conversations', 'contacts', 'messages', 'menubar'];
 
         return (
-            <DropdownButton title="Create Plugin">
+            <DropdownButton
+                title="Create Plugin">
                 {LOCATIONS.map((location) => {
                     return (<MenuItem
-                        onClick={ () => { this.setState({edit: true, location: location, code: location === "menubar" ? exampleMenubarPlugin : examplePlugin}) } }>
+                        onClick={ () => { this.setState({
+                            edit: true,
+                            location: location,
+                            code: location === "menubar" ? exampleMenubarPlugin : examplePlugin}) } }>
                         create {location} plugin
                     </MenuItem>)
                 })}
@@ -87,27 +97,43 @@ class App extends Component {
             lineNumbers: true,
             mode: 'javascript'
         };
-        
-        return (<div style={{"float": "left"}}>
-            <br/>
-            <Codemirror style={{"height":"300px", "width":"100%", "float": "left"}}
-                        value={this.state.code} onChange={(code) => this.updateCode(code)}
-                        options={options}/>
-            <div style={{float: "right"}}>
-                <br/>
-                <button
-                    onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null}); alert("saved") }}>
-                    save
-                </button>
-                <button onClick={ () => { this.setState({edit: false, location: null})} }>close</button>
-            </div>
-        </div>)
+
+        return (
+            <div style={{
+                float: "left",
+                marginTop: "10px"}}>
+                <Codemirror style={{
+                    height:"300px",
+                    width:"100%",
+                    float: "left"}}
+                            value={this.state.code}
+                            onChange={(code) => this.updateCode(code)}
+                            options={options}/>
+                <div style={{
+                    float: "right",
+                    marginTop: "10px"}}>
+                    <button
+                        onClick={ () => {
+                        this.props.saveLocal({
+                            src: this.state.code,
+                            location: this.state.location},
+                            this);
+                        this.setState({location: null});
+                        alert("saved") }
+                        }>save
+                    </button>
+                    <button onClick={ () => {
+                        this.setState({edit: false, location: null})}
+                        }>close
+                    </button>
+                </div>
+            </div>)
     }
 
     render() {
         const { onRegisterPlugin } = this.props;
 
-        const BUTTONS = ['Injected MenuItems'];
+        const BUTTONS = ['Menu Items'];
 
         const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
 
@@ -119,32 +145,44 @@ class App extends Component {
                     <button onClick={ () => this.toggleDevMode() }>
                         {this.state.devMode ? "exit " : "enter "} dev mode
                     </button>
-                    <br/><br/>
-                    <ButtonToolbar>
+                    <ButtonToolbar style={{marginTop: "10px"}}>
                         {buttonsInstance}{this.state.devMode ? createButtonsInstance : null}
                     </ButtonToolbar>
-
-
                     {this.state.edit && this.state.devMode ? this.renderEditor() : null}
                 </div>
-                <div style={{clear: "both"}}>
-                    <br/>
-                    <div style={{clear: "both"}}>
-                        <div
-                            style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
-                            <h4>{this.state.conversationsTitle}</h4>
-                            <PluginList devMode={this.state.devMode} location="conversations" {...this.props} />
-                        </div>
-                        <div
-                            style={{"padding":"5px","margin":"5px","backgroundColor": "salmon","verticalAlign": "top","float":"left"}}>
-                            <h4>{this.state.contactsTitle}</h4>
-                            <PluginList devMode={this.state.devMode} location="contacts" {...this.props} />
-                        </div>
-                        <div
-                            style={{"padding":"5px","margin":"5px","backgroundColor": "lightblue","verticalAlign": "top","float":"left"}}>
-                            <h4>{this.state.messagesTitle}</h4>
-                            <PluginList devMode={this.state.devMode} location="messages" {...this.props} />
-                        </div>
+                <div style={{
+                    clear: "both",
+                    marginTop: "5px"}}>
+                    <div
+                        style={{
+                            padding:"5px",
+                            margin:"5px",
+                            backgroundColor:"bisque",
+                            verticalAlign:"top",
+                            float:"left"
+                            }}>
+                        <h4>{this.state.conversationsTitle}</h4>
+                        <PluginList devMode={this.state.devMode} location="conversations" {...this.props} />
+                    </div>
+                    <div
+                        style={{
+                            padding:"5px",
+                            margin:"5px",
+                            backgroundColor:"salmon",
+                            verticalAlign:"top",
+                            float:"left"}}>
+                        <h4>{this.state.contactsTitle}</h4>
+                        <PluginList devMode={this.state.devMode} location="contacts" {...this.props} />
+                    </div>
+                    <div
+                        style={{
+                            padding:"5px",
+                            margin:"5px",
+                            backgroundColor:"lightblue",
+                            verticalAlign:"top",
+                            float:"left"}}>
+                        <h4>{this.state.messagesTitle}</h4>
+                        <PluginList devMode={this.state.devMode} location="messages" {...this.props} />
                     </div>
                 </div>
             </div>
