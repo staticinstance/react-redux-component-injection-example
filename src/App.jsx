@@ -87,7 +87,7 @@ class App extends Component {
         <div><button onClick={ () => {
                 this.setState({devMode: !this.state.devMode});
                    if(!this.state.devMode && this.state.edit){
-                    this.setState({edit: false})}}
+                    this.setState({devMode: false})}}
                     }>
                 {this.state.devMode ? "exit " : "enter "} dev mode
             </button>
