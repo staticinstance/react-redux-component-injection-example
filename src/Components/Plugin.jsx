@@ -37,6 +37,10 @@ class Plugin extends Component {
                 <br/>
                 <Codemirror style={{"height":"300px", "width":"500px"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={{lineNumbers: true, mode: 'javascript'}} />
                 <br/>
+                <button style={{float: "right"}}
+                        onClick={ () => { this.setState({edit: false, location: null})} }>
+                    close
+                </button>
                 <button
                     style={{float: "right"}}
                     onClick={() => {
@@ -68,7 +72,8 @@ class Plugin extends Component {
     }
 
     getView(){
-        if(this.state.edit && this.props.devMode){
+        console.log('mode', this.props.devMode, this.state.edit)
+        if(this.props.devMode && this.state.edit){
             return this.getEditView();
         }else if(this.props.devMode) {
             return this.getDevModeView();

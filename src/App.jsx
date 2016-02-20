@@ -8,7 +8,6 @@ import './css/codemirror.css';
 import { Plugin, PluginList } from "./Components"
 import examplePlugin from "./examplePlugin";
 import exampleMenubarPlugin from "./exampleMenubarPlugin";
-import createOscillator from './utils/createOscillator'
 const low = require('lowdb')
 const storage = require('lowdb/browser')
 const db = low('db', { storage })
@@ -19,6 +18,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            devMode: false,
             edit: false,
             conversationsTitle: "Conversations",
             messagesTitle: "Messages",
@@ -87,7 +87,7 @@ class App extends Component {
         <div><button onClick={ () => {
                 this.setState({devMode: !this.state.devMode});
                    if(!this.state.devMode && this.state.edit){
-                    this.setState({devMode: false})}}
+                    this.setState({edit: false})}}
                     }>
                 {this.state.devMode ? "exit " : "enter "} dev mode
             </button>
@@ -114,15 +114,15 @@ class App extends Component {
               <div style={{clear: "both"}}>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.conversationsTitle}</h4>
-                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="conversations" {...this.props} />
+                      <PluginList devMode={this.state.devMode} location="conversations" {...this.props} />
                   </div>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "salmon","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.contactsTitle}</h4>
-                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="contacts" {...this.props} />
+                      <PluginList devMode={this.state.devMode} location="contacts" {...this.props} />
                   </div>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "lightblue","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.messagesTitle}</h4>
-                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="messages" {...this.props} />
+                      <PluginList devMode={this.state.devMode} location="messages" {...this.props} />
                   </div>
               </div>
           </div>
