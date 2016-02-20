@@ -1,5 +1,5 @@
 # react-redux-component-injection-example
-Use Redux to store a list of React components that can be injected into target locations within the app. Uses lowdb to persist plugins in local storage.
+Uses Redux to store a list of React components that can be injected as plugins into target locations within the app. Uses lowdb to persist the plugins in local storage.
 
 #Demo
 http://plugins.michaelbradley.io

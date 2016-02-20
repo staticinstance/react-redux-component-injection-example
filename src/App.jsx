@@ -10,7 +10,7 @@ import examplePlugin from "./examplePlugin";
 import exampleMenubarPlugin from "./exampleMenubarPlugin";
 const low = require('lowdb')
 const storage = require('lowdb/browser')
-const db = low('db', { storage })
+const db = low('db', {storage})
 import { Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
 
@@ -26,21 +26,25 @@ class App extends Component {
             code: ""
         };
     }
+
     updateCode(newCode) {
         this.setState({
             code: newCode
         });
     }
-    componentDidMount(){
+
+    componentDidMount() {
         const { fetchPlugins } = this.props;
         fetchPlugins();
     }
-    closeEditor(){
+
+    closeEditor() {
         this.setState({
             edit: false
         });
     }
-    updateState(state){
+
+    updateState(state) {
         this.setState(state);
     }
 
@@ -49,85 +53,103 @@ class App extends Component {
             <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
                 {this.props.pluginStore.filter((item) => item.location === "menubar").map((item) => {
                     const plugin = item;
-                    return <Plugin MenuItem={MenuItem} devMode={this.state.devMode} location="menubar" plugin={item} {...this.props} />
+                    return <Plugin MenuItem={MenuItem} devMode={this.state.devMode} location="menubar"
+                                   plugin={item} {...this.props} />
                 })}
             </DropdownButton>
         );
     }
 
-    renderCreatePluginButton(location, i){
+    renderCreatePluginButton(location, i) {
         const LOCATIONS = ['conversations', 'contacts', 'messages', 'menubar'];
 
         return (
             <DropdownButton title="Create Plugin">
                 {LOCATIONS.map((location) => {
-                    return (<MenuItem onClick={ () => { this.setState({edit: true, location: location, code: location === "menubar" ? exampleMenubarPlugin : examplePlugin}) } }>
-                    create {location} plugin
+                    return (<MenuItem
+                        onClick={ () => { this.setState({edit: true, location: location, code: location === "menubar" ? exampleMenubarPlugin : examplePlugin}) } }>
+                        create {location} plugin
                     </MenuItem>)
                 })}
             </DropdownButton>
         );
     }
-  render() {
-    const { onRegisterPlugin } = this.props;
-      const options = {
-          lineNumbers: true,
-          mode: 'javascript'
-      };
 
-      const BUTTONS = ['Injected MenuItems'];
+    toggleDevMode(){
+        this.setState({devMode: !this.state.devMode});
+        if(!this.state.devMode && this.state.edit){
+            this.setState({edit: false})
+        }
+    }
 
-      const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
+    renderEditor(){
+        const options = {
+            lineNumbers: true,
+            mode: 'javascript'
+        };
+        
+        return (<div style={{"float": "left"}}>
+            <br/>
+            <Codemirror style={{"height":"300px", "width":"100%", "float": "left"}}
+                        value={this.state.code} onChange={(code) => this.updateCode(code)}
+                        options={options}/>
+            <div style={{float: "right"}}>
+                <br/>
+                <button
+                    onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null}); alert("saved") }}>
+                    save
+                </button>
+                <button onClick={ () => { this.setState({edit: false, location: null})} }>close</button>
+            </div>
+        </div>)
+    }
 
-      const createButtonsInstance = this.renderCreatePluginButton();
+    render() {
+        const { onRegisterPlugin } = this.props;
 
-      return (
-      <div>
-        <div><button onClick={ () => {
-                this.setState({devMode: !this.state.devMode});
-                   if(!this.state.devMode && this.state.edit){
-                    this.setState({edit: false})}}
-                    }>
-                {this.state.devMode ? "exit " : "enter "} dev mode
-            </button>
-            <br/><br/>
-            <ButtonToolbar>
-                {buttonsInstance}{this.state.devMode ? createButtonsInstance : null}
-            </ButtonToolbar>
+        const BUTTONS = ['Injected MenuItems'];
+
+        const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
+
+        const createButtonsInstance = this.renderCreatePluginButton();
+
+        return (
+            <div>
+                <div>
+                    <button onClick={ () => this.toggleDevMode() }>
+                        {this.state.devMode ? "exit " : "enter "} dev mode
+                    </button>
+                    <br/><br/>
+                    <ButtonToolbar>
+                        {buttonsInstance}{this.state.devMode ? createButtonsInstance : null}
+                    </ButtonToolbar>
 
 
-          {this.state.edit && this.state.devMode ?
-              <div style={{"float": "left"}}>
-                  <br/>
-                  <Codemirror style={{"height":"300px", "width":"100%", "float": "left"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={options} />
-                  <div style={{float: "right"}}>
-                      <br/>
-                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null}); alert("saved") }}>save</button>
-                      <button onClick={ () => { this.setState({edit: false, location: null})} }>close</button>
-                  </div>
-              </div>
-              : null}
-          </div>
-          <div style={{clear: "both"}}>
-              <br/>
-              <div style={{clear: "both"}}>
-                  <div style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
-                      <h4>{this.state.conversationsTitle}</h4>
-                      <PluginList devMode={this.state.devMode} location="conversations" {...this.props} />
-                  </div>
-                  <div style={{"padding":"5px","margin":"5px","backgroundColor": "salmon","verticalAlign": "top","float":"left"}}>
-                      <h4>{this.state.contactsTitle}</h4>
-                      <PluginList devMode={this.state.devMode} location="contacts" {...this.props} />
-                  </div>
-                  <div style={{"padding":"5px","margin":"5px","backgroundColor": "lightblue","verticalAlign": "top","float":"left"}}>
-                      <h4>{this.state.messagesTitle}</h4>
-                      <PluginList devMode={this.state.devMode} location="messages" {...this.props} />
-                  </div>
-              </div>
-          </div>
-      </div>
-    )
-  }
+                    {this.state.edit && this.state.devMode ? this.renderEditor() : null}
+                </div>
+                <div style={{clear: "both"}}>
+                    <br/>
+                    <div style={{clear: "both"}}>
+                        <div
+                            style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
+                            <h4>{this.state.conversationsTitle}</h4>
+                            <PluginList devMode={this.state.devMode} location="conversations" {...this.props} />
+                        </div>
+                        <div
+                            style={{"padding":"5px","margin":"5px","backgroundColor": "salmon","verticalAlign": "top","float":"left"}}>
+                            <h4>{this.state.contactsTitle}</h4>
+                            <PluginList devMode={this.state.devMode} location="contacts" {...this.props} />
+                        </div>
+                        <div
+                            style={{"padding":"5px","margin":"5px","backgroundColor": "lightblue","verticalAlign": "top","float":"left"}}>
+                            <h4>{this.state.messagesTitle}</h4>
+                            <PluginList devMode={this.state.devMode} location="messages" {...this.props} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default App
