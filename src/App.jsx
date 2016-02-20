@@ -78,21 +78,24 @@ class App extends Component {
 
       const BUTTONS = ['Injected MenuItems'];
 
-      const buttonsInstance = (
-          <ButtonToolbar>{BUTTONS.map((title) => this.renderDropdownButton(title))}</ButtonToolbar>
-      );
+      const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
 
-      const createButtonsInstance = (
-          <ButtonToolbar>{this.renderCreatePluginButton()}</ButtonToolbar>
-      );
+      const createButtonsInstance = this.renderCreatePluginButton();
 
       return (
       <div>
-        <div>
-          <button onClick={ () => { this.setState({devMode: !this.state.devMode}); if(!this.state.devMode && this.state.edit){this.setState({edit: false})}} }>{this.state.devMode ? "exit " : "enter "} dev mode</button>
-            {buttonsInstance}
-          {this.state.devMode ? createButtonsInstance : null}
-          <br/>
+        <div><button onClick={ () => {
+                this.setState({devMode: !this.state.devMode});
+                   if(!this.state.devMode && this.state.edit){
+                    this.setState({edit: false})}}
+                    }>
+                {this.state.devMode ? "exit " : "enter "} dev mode
+            </button>
+            <br/><br/>
+            <ButtonToolbar>
+                {buttonsInstance}{this.state.devMode ? createButtonsInstance : null}
+            </ButtonToolbar>
+
 
           {this.state.edit && this.state.devMode ?
               <div style={{"float": "left"}}>
@@ -100,15 +103,14 @@ class App extends Component {
                   <Codemirror style={{"height":"300px", "width":"100%", "float": "left"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={options} />
                   <div style={{float: "right"}}>
                       <br/>
-                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null})} }>save</button>
+                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null}); alert("saved") }}>save</button>
                       <button onClick={ () => { this.setState({edit: false, location: null})} }>close</button>
                   </div>
-                  <br/><br/>
               </div>
               : null}
           </div>
           <div style={{clear: "both"}}>
-              <br/><br/>
+              <br/>
               <div style={{clear: "both"}}>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.conversationsTitle}</h4>
