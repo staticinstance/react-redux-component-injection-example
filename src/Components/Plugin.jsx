@@ -51,21 +51,27 @@ class Plugin extends Component {
         </div>)
     }
     getDisplayView(){
+        return <this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+    }
+
+    getDevModeView(){
         return <span><this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
             {this.props.devMode ?
-            !this.state.edit ?
-                <div><br/>
-                    <button style={{float: "right"}} onClick={() => this.setState({edit: !this.state.edit}) }>edit</button>
-                    <br/><br/>
-                </div> : null
-            : null
-        }
+                !this.state.edit ?
+                    <div><br/>
+                        <button style={{float: "right"}} onClick={() => this.setState({edit: !this.state.edit}) }>edit</button>
+                        <br/><br/>
+                    </div> : null
+                : null
+            }
             </span>
     }
 
     getView(){
         if(this.state.edit && this.props.devMode){
             return this.getEditView();
+        }else if(this.props.devMode) {
+            return this.getDevModeView();
         }else{
             return this.getDisplayView();
         }
