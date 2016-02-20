@@ -76,7 +76,7 @@ class App extends Component {
           mode: 'javascript'
       };
 
-      const BUTTONS = ['Primary'];
+      const BUTTONS = ['Injected MenuItems'];
 
       const buttonsInstance = (
           <ButtonToolbar>{BUTTONS.map((title) => this.renderDropdownButton(title))}</ButtonToolbar>
@@ -90,6 +90,7 @@ class App extends Component {
       <div>
         <div>
           <button onClick={ () => { this.setState({devMode: !this.state.devMode}); if(!this.state.devMode && this.state.edit){this.setState({edit: false})}} }>{this.state.devMode ? "exit " : "enter "} dev mode</button>
+            {buttonsInstance}
           {this.state.devMode ? createButtonsInstance : null}
           <br/>
 
@@ -108,7 +109,6 @@ class App extends Component {
           </div>
           <div style={{clear: "both"}}>
               <br/><br/>
-              {buttonsInstance}
               <div style={{clear: "both"}}>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.conversationsTitle}</h4>
