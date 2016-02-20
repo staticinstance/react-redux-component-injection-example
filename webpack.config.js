@@ -63,7 +63,7 @@ var config = {
 }
 
 if (process.env.NODE_ENV === "production") {
-  config.entry.app = ["./src/main.jsx"]; // remove webpack-dev-server-artifacts
+  config.entry = ["./src/main.jsx"]; // remove webpack-dev-server-artifacts
 }
 
 module.exports = config;
