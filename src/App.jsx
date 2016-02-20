@@ -44,14 +44,8 @@ class App extends Component {
     }
 
     renderDropdownButton(title, i) {
-        console.log('hey')
         return (
             <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
-                <MenuItem eventKey="1">Action</MenuItem>
-                <MenuItem eventKey="2">Another action</MenuItem>
-                <MenuItem eventKey="3" active>Active Item</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey="4">Separated link</MenuItem>
                 {this.props.pluginStore.filter((item) => item.location === "menubar").map((item) => {
                     const plugin = item;
                     return <Plugin MenuItem={MenuItem} devMode={this.state.devMode} location="menubar" plugin={item} {...this.props} />
@@ -60,7 +54,19 @@ class App extends Component {
         );
     }
 
+    renderCreatePluginButton(location, i){
+        const LOCATIONS = ['conversations', 'contacts', 'messages', 'menubar'];
 
+        return (
+            <DropdownButton title="Create Plugin">
+                {LOCATIONS.map((location) => {
+                    return (<MenuItem onClick={ () => { this.setState({edit: !this.state.edit, location: location}) } }>
+                    create {location} plugin
+                    </MenuItem>)
+                })}
+            </DropdownButton>
+        );
+    }
   render() {
     const { onRegisterPlugin } = this.props;
       const options = {
@@ -68,20 +74,21 @@ class App extends Component {
           mode: 'javascript'
       };
 
-      const BUTTONS = ['Default', 'Primary', 'Success', 'Info', 'Warning', 'Danger', 'Link'];
+      const BUTTONS = ['Primary'];
 
       const buttonsInstance = (
           <ButtonToolbar>{BUTTONS.map((title) => this.renderDropdownButton(title))}</ButtonToolbar>
       );
-console.log(buttonsInstance)
-    return (
+
+      const createButtonsInstance = (
+          <ButtonToolbar>{this.renderCreatePluginButton()}</ButtonToolbar>
+      );
+
+      return (
       <div>
         <div>
           <button onClick={ () => { this.setState({devMode: !this.state.devMode}); if(!this.state.devMode && this.state.edit){this.setState({edit: false})}} }>{this.state.devMode ? "exit " : "enter "} dev mode</button>
-          {this.state.devMode ?
-              <button onClick={ () => { this.setState({edit: !this.state.edit}) } }>create plugin</button>
-              : null
-          }
+          {this.state.devMode ? createButtonsInstance : null}
           <br/>
 
           {this.state.edit && this.state.devMode ?
@@ -90,10 +97,7 @@ console.log(buttonsInstance)
                   <Codemirror style={{"height":"300px", "width":"100%", "float": "left"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={options} />
                   <div style={{float: "right"}}>
                       <br/>
-                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location:"message"}, this) } }>save message plugin</button>
-                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location:"conversation"}, this) } }>save conversation plugin</button>
-                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location:"contact"}, this) } }>save contact plugin</button>
-                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location:"menubar"}, this) } }>save menubar plugin</button>
+                      <button onClick={ () => { this.props.saveLocal({src: this.state.code, location: this.state.location}, this); this.setState({location: null})} }>save</button>
                   </div>
                   <br/><br/>
               </div>
@@ -106,15 +110,15 @@ console.log(buttonsInstance)
               <div style={{clear: "both"}}>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "bisque","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.conversationsTitle}</h4>
-                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="conversation" {...this.props} />
+                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="conversations" {...this.props} />
                   </div>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "salmon","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.contactsTitle}</h4>
-                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="contact" {...this.props} />
+                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="contacts" {...this.props} />
                   </div>
                   <div style={{"padding":"5px","margin":"5px","backgroundColor": "lightblue","verticalAlign": "top","float":"left"}}>
                       <h4>{this.state.messagesTitle}</h4>
-                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="message" {...this.props} />
+                      <PluginList createOscillator={createOscillator} topLevelScope={this} devMode={this.state.devMode} location="messages" {...this.props} />
                   </div>
               </div>
           </div>
