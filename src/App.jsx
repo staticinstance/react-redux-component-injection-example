@@ -20,9 +20,9 @@ class App extends Component {
         this.state = {
             devMode: false,
             edit: false,
-            conversationsTitle: "Conversations",
-            messagesTitle: "Messages",
-            contactsTitle: "Contacts",
+            target1Header: "Target 1",
+            target2Header: "Target 2",
+            target3Header: "Target 3",
             code: ""
         };
     }
@@ -55,11 +55,11 @@ class App extends Component {
                 title={title}
                 key={i}
                 id={`dropdown-basic-${i}`}>
-                {this.props.pluginStore.filter((item) => item.location === "menubar").map((item) => {
+                {this.props.pluginStore.filter((item) => item.location === "target4").map((item) => {
                     const plugin = item;
                     return <Plugin MenuItem={MenuItem}
                                    devMode={this.state.devMode}
-                                   location="menubar"
+                                   location="target4"
                                    plugin={item} {...this.props} />
                 })}
             </DropdownButton>
@@ -67,7 +67,7 @@ class App extends Component {
     }
 
     renderCreatePluginButton(location, i) {
-        const LOCATIONS = ['conversations', 'contacts', 'messages', 'menubar'];
+        const LOCATIONS = ['target1', 'target2', 'target3', 'target4'];
 
         return (
             <DropdownButton
@@ -77,7 +77,7 @@ class App extends Component {
                         onClick={ () => { this.setState({
                             edit: true,
                             location: location,
-                            code: location === "menubar" ? exampleMenubarPlugin : examplePlugin}) } }>
+                            code: location === "target4" ? exampleMenubarPlugin : examplePlugin}) } }>
                         create {location} plugin
                     </MenuItem>)
                 })}
@@ -161,8 +161,8 @@ class App extends Component {
                             verticalAlign:"top",
                             float:"left"
                             }}>
-                        <h4>{this.state.conversationsTitle}</h4>
-                        <PluginList devMode={this.state.devMode} location="conversations" {...this.props} />
+                        <h4>{this.state.target1Header}</h4>
+                        <PluginList devMode={this.state.devMode} location="target1" {...this.props} />
                     </div>
                     <div
                         style={{
@@ -171,8 +171,8 @@ class App extends Component {
                             backgroundColor:"salmon",
                             verticalAlign:"top",
                             float:"left"}}>
-                        <h4>{this.state.contactsTitle}</h4>
-                        <PluginList devMode={this.state.devMode} location="contacts" {...this.props} />
+                        <h4>{this.state.target2Header}</h4>
+                        <PluginList devMode={this.state.devMode} location="target2" {...this.props} />
                     </div>
                     <div
                         style={{
@@ -181,8 +181,8 @@ class App extends Component {
                             backgroundColor:"lightblue",
                             verticalAlign:"top",
                             float:"left"}}>
-                        <h4>{this.state.messagesTitle}</h4>
-                        <PluginList devMode={this.state.devMode} location="messages" {...this.props} />
+                        <h4>{this.state.target3Header}</h4>
+                        <PluginList devMode={this.state.devMode} location="target3" {...this.props} />
                     </div>
                 </div>
             </div>
