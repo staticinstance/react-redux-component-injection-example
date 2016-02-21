@@ -133,7 +133,7 @@ class App extends Component {
     render() {
         const { onRegisterPlugin } = this.props;
 
-        const BUTTONS = ['Menu Items'];
+        const BUTTONS = ['Target 4'];
 
         const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
 
