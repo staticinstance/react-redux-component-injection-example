@@ -23,6 +23,7 @@ class App extends Component {
             target1Header: "Target 1",
             target2Header: "Target 2",
             target3Header: "Target 3",
+            target4Header: "Target 4",
             code: ""
         };
     }
@@ -133,7 +134,7 @@ class App extends Component {
     render() {
         const { onRegisterPlugin } = this.props;
 
-        const BUTTONS = ['Target 4'];
+        const BUTTONS = [this.state.target4Header];
 
         const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
 
