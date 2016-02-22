@@ -1,9 +1,10 @@
-const examplePlugin = `React.createClass({
-  getInitialState(){
-    return {
-        time: 0
+const examplePlugin = `class exampleMenubarPlugin extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      time: 0
     }
-  },
+  }
   makeAjaxCall(){
     this.props.axios
       .get('http://server.cors-api.appspot.com/server?id=6677589&enable=true&status=200&credentials=false')
@@ -13,7 +14,7 @@ const examplePlugin = `React.createClass({
       .catch(function (response) {
           console.log(response);
       });
-  },
+  }
   render() {
       return (
           <div style={{padding: "5px", border: "5px solid white"}}>
@@ -23,6 +24,6 @@ const examplePlugin = `React.createClass({
           </div>
       );
   }
-})`;
+}`;
 
 export default examplePlugin;
