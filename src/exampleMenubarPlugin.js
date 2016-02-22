@@ -1,11 +1,11 @@
-const examplePlugin = `class examplePlugin extends React.Component {
+const exampleMenubarPlugin = `export default class examplePlugin extends React.Component {
   render() {
     return (
-      <this.props.MenuItem onClick{ () => alert("hello") }>
+      <this.props.MenuItem onClick={ () => alert("hello") }>
         Injected MenuItem
       </this.props.MenuItem>
     )
   }
 }`;
 
-export default examplePlugin;
+export default exampleMenubarPlugin;

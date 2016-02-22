@@ -139,6 +139,7 @@ class App extends Component {
         const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
 
         const createButtonsInstance = this.renderCreatePluginButton();
+        console.log("PLUGIN_STORE", this.props.pluginStore);
 
         return (
             <div>
@@ -185,6 +186,12 @@ class App extends Component {
                         <h4>{this.state.target3Header}</h4>
                         <PluginList devMode={this.state.devMode} location="target3" {...this.props} />
                     </div>
+                </div>
+                <div style={{marginLeft: "100px"}}>
+                  You have {this.props.pluginStore.length} plugin{this.props.pluginStore.length > 1 ? "s" : ""}.
+                  <ul>
+                    {this.props.pluginStore.map( (plugin) => <li>{plugin.location}</li> )}
+                  </ul>
                 </div>
             </div>
         )

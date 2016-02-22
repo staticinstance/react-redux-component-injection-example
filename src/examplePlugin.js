@@ -1,4 +1,4 @@
-const examplePlugin = `class exampleMenubarPlugin extends React.Component {
+const examplePlugin = `export default class exampleMenubarPlugin extends React.Component {
   constructor() {
     super();
     this.state = {
