@@ -155,6 +155,17 @@ class App extends Component {
                 <div style={{
                     clear: "both",
                     marginTop: "5px"}}>
+                    <div style={{
+                            padding:"5px",
+                            margin:"5px",
+                            backgroundColor:"lightblue",
+                            verticalAlign:"top",
+                            float:"left"}}>
+                        You have {this.props.pluginStore.length} plugin{this.props.pluginStore.length > 1 ? "s" : ""}.
+                        <ul>
+                            {this.props.pluginStore.map( (plugin) => <li>{plugin.location}</li> )}
+                        </ul>
+                    </div>
                     <div
                         style={{
                             padding:"5px",
@@ -186,12 +197,6 @@ class App extends Component {
                         <h4>{this.state.target3Header}</h4>
                         <PluginList devMode={this.state.devMode} location="target3" {...this.props} />
                     </div>
-                </div>
-                <div style={{marginLeft: "100px"}}>
-                  You have {this.props.pluginStore.length} plugin{this.props.pluginStore.length > 1 ? "s" : ""}.
-                  <ul>
-                    {this.props.pluginStore.map( (plugin) => <li>{plugin.location}</li> )}
-                  </ul>
                 </div>
             </div>
         )
