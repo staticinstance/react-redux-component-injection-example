@@ -161,7 +161,7 @@ class App extends Component {
                             backgroundColor:"lightblue",
                             verticalAlign:"top",
                             float:"left"}}>
-                        You have {this.props.pluginStore.length} plugin{this.props.pluginStore.length > 1 ? "s" : ""}.
+                        You have {this.props.pluginStore.length} plugin{this.props.pluginStore.length === 1 ? "s" : ""}.
                         <ul>
                             {this.props.pluginStore.map( (plugin) => <li>{plugin.location}</li> )}
                         </ul>
