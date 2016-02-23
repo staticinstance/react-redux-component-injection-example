@@ -113,17 +113,19 @@ class App extends Component {
                 <div style={{
                     float: "right",
                     marginTop: "10px"}}>
+                    <button style={{
+                    marginRight: "10px"}}
+                     onClick={ () => {
+                        this.setState({edit: false, location: null})}
+                        }>close
+                    </button>
                     <button
-                        onClick={ () => {
+                      onClick={ () => {
                         this.props.saveLocal({
                             src: this.state.code,
                             location: this.state.location},
                             this);
                         this.setState({location: null}) }}>save
-                    </button>
-                    <button onClick={ () => {
-                        this.setState({edit: false, location: null})}
-                        }>close
                     </button>
                 </div>
             </div>)
