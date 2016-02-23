@@ -119,9 +119,7 @@ class App extends Component {
                             src: this.state.code,
                             location: this.state.location},
                             this);
-                        this.setState({location: null});
-                        alert("saved") }
-                        }>save
+                        this.setState({location: null}) }}>save
                     </button>
                     <button onClick={ () => {
                         this.setState({edit: false, location: null})}
