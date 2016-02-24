@@ -4,7 +4,7 @@
   "description": "React Redux Component Plugin Example",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "webpack-dev-server"
   },
   "babel": {
@@ -48,5 +48,7 @@
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.14.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest-cli": "^0.8.2"
+  }
 }
