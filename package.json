@@ -4,8 +4,19 @@
   "description": "React Redux Component Plugin Example",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "jest",
+    "test": "BABEL_JEST_STAGE=0 jest",
     "dev": "webpack-dev-server"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/react-dom",
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "<rootDir>/node_modules/fbjs" ],
+      "modulePathIgnorePatterns": [
+        "<rootDir>/node_modules/"
+      ]
   },
   "babel": {
     "presets": [
@@ -22,6 +33,10 @@
   },
   "author": "Michael Bradley",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/staticinstance/react-redux-component-injection-example"
+  },
   "dependencies": {
     "axios": "^0.9.1",
     "babel-core": "^6.4.5",
@@ -49,6 +64,9 @@
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
-    "jest-cli": "^0.8.2"
+    "babel-jest": "*",
+    "jest-cli": "*",
+    "jest-webpack-alias": "^2.2.0",
+    "react-addons-test-utils": "~0.14.0"
   }
 }
