@@ -1,4 +1,4 @@
-// __tests__/sum-test.js
+// __tests__/sum-tests.js
 jest.dontMock('./sum');
 
 describe('sum', function() {
