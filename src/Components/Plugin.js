@@ -1,10 +1,10 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import Codemirror from "react-codemirror";
-import axios from "axios";
+//import axios from "axios";
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/markdown/markdown';
-import '../css/codemirror.css';
+//import '../css/codemirror.css';
 import { MenuItem } from 'react-bootstrap';
 
 class Plugin extends Component {
@@ -32,7 +32,7 @@ class Plugin extends Component {
     }
     getEditView(){
         return (<div style={{margin: "5px"}}>
-            <this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+            <this.props.plugin.cmp MenuItem={MenuItem} key={this.props.id} {...this.props}/>
             {this.state.edit && this.props.devMode ? <div>
                 <br/>
                 <Codemirror style={{"height":"300px", "width":"500px"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={{lineNumbers: true, mode: 'javascript'}} />
@@ -55,11 +55,11 @@ class Plugin extends Component {
         </div>)
     }
     getDisplayView(){
-        return <this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+        return <this.props.plugin.cmp MenuItem={MenuItem} key={this.props.id} {...this.props}/>
     }
 
     getDevModeView(){
-        return <span><this.props.plugin.cmp axios={axios} MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+        return <span><this.props.plugin.cmp MenuItem={MenuItem} key={this.props.id} {...this.props}/>
             {this.props.devMode ?
                 !this.state.edit ?
                     <div><br/>
@@ -71,17 +71,19 @@ class Plugin extends Component {
             </span>
     }
     getView(){
+        let view = null;
         if(this.props.devMode && this.state.edit){
-            return this.getEditView();
+            view = this.getEditView();
         }else if(this.props.devMode) {
-            return this.getDevModeView();
+            view = this.getDevModeView();
         }else{
-            return this.getDisplayView();
+            view = this.getDisplayView();
         }
+        return view;
     }
     render() {
         return this.getView()
     }
 }
 
-export default Plugin;
+module.exports = Plugin;

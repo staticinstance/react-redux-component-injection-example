@@ -64,6 +64,8 @@
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
     "babel-jest": "*",
     "jest-cli": "*",
     "jest-webpack-alias": "^2.2.0",
