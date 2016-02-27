@@ -1,6 +1,7 @@
 import App from "../App";
 import { connect } from "react-redux";
 import { registerPlugin, unregisterPlugin, fetchPlugins, updatePlugin } from "../Actions/actions";
+import axios from "axios";
 const low = require('lowdb')
 const storage = require('lowdb/browser')
 const db = low('db', { storage })
@@ -14,6 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+      axios: axios,
       onRegisterPlugin: (plugin) => dispatch(registerPlugin(plugin)),
       fetchPlugins: () => {
           db('plugins').value().map((item) => dispatch(registerPlugin(item)))

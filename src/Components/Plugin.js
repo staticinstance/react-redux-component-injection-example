@@ -32,7 +32,7 @@ class Plugin extends Component {
     }
     getEditView(){
         return (<div style={{margin: "5px"}}>
-            <this.props.plugin.cmp MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+            <this.props.plugin.cmp MenuItem={MenuItem} key={this.props.plugin.id} {...this.props}/>
             {this.state.edit && this.props.devMode ? <div>
                 <br/>
                 <Codemirror style={{"height":"300px", "width":"500px"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={{lineNumbers: true, mode: 'javascript'}} />
@@ -55,11 +55,11 @@ class Plugin extends Component {
         </div>)
     }
     getDisplayView(){
-        return <this.props.plugin.cmp MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+        return <this.props.plugin.cmp MenuItem={MenuItem} key={this.props.plugin.id} {...this.props}/>
     }
 
     getDevModeView(){
-        return <span><this.props.plugin.cmp MenuItem={MenuItem} key={this.props.id} {...this.props}/>
+        return <span><this.props.plugin.cmp MenuItem={MenuItem} key={this.props.plugin.id} {...this.props}/>
             {this.props.devMode ?
                 !this.state.edit ?
                     <div><br/>
