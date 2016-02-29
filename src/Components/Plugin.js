@@ -3,7 +3,7 @@ import Codemirror from "react-codemirror";
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/markdown/markdown';
-import '../css/codemirror.css';
+//import '../css/codemirror.css';
 
 class Plugin extends Component {
     constructor(props) {
@@ -44,7 +44,8 @@ class Plugin extends Component {
                     onClick={() => {
                              let plugin = this.props.plugin;
                              plugin.src = this.state.code;
-                             this.props.saveLocal(plugin, this)}}>
+                             this.props.saveLocal(plugin, this)
+                             this.setState({edit: false})}}>
                     save
                 </button>
                 <br/><br/>
