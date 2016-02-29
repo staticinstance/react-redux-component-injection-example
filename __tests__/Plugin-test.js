@@ -28,6 +28,6 @@ describe('Plugin', () => {
   it('has an edit button in dev mode', () => {
     var pluginNode = ReactDOM.findDOMNode(plugin);
        var button = TestUtils.findRenderedDOMComponentWithTag(plugin, 'button');
-        expect(button.textContent).toEqual('edit');
+        expect(button.textContent).toEqual('ledit');
   });
 });
