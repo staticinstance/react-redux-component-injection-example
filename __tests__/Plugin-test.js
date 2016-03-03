@@ -22,7 +22,7 @@ describe('Plugin', () => {
         id: 1
     };
     var plugin = TestUtils.renderIntoDocument(
-      <Plugin plugin={plugin} devMode={true} />
+      <Plugin plugin={plugin} devMode={false} />
     );
     
   it('has an edit button in dev mode', () => {
