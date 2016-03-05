@@ -1,74 +1,88 @@
 {
-  "name": "react-redux-component-plugin-example",
-  "version": "1.0.0",
-  "description": "React Redux Component Plugin Example",
-  "main": "webpack.config.js",
-  "scripts": {
-    "test": "BABEL_JEST_STAGE=0 jest",
-    "dev": "webpack-dev-server"
-  },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils",
-      "<rootDir>/node_modules/fbjs" ],
-      "modulePathIgnorePatterns": [
-        "<rootDir>/node_modules/"
-      ]
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "react"
-    ],
-    "env": {
-      "development": {
-        "presets": [
-          "react-hmre"
+    "name": "react-redux-component-plugin-example",
+    "version": "1.0.0",
+    "description": "React Redux Component Plugin Example",
+    "main": "webpack.config.js",
+    "scripts": {
+        "test": "BABEL_JEST_STAGE=0 jest --verbose",
+        "dev": "webpack-dev-server",
+        "start": "webpack-dev-server"
+    },
+    "jest": {
+        "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+        "unmockedModulePathPatterns": [
+            "react",
+            "react-dom",
+            "react-addons-test-utils",
+            "fbjs",
+            "enzyme",
+            "cheerio",
+            "htmlparser2",
+            "lodash",
+            "domhandler",
+            "object.assign",
+            "define-properties",
+            "function-bind",
+            "object-keys",
+            "object.values",
+            "es-abstract"
+        ],
+        "modulePathIgnorePatterns": [
+            "<rootDir>/node_modules/"
         ]
-      }
+    },
+    "babel": {
+        "presets": [
+            "es2015",
+            "react"
+        ],
+        "env": {
+            "development": {
+                "presets": [
+                    "react-hmre"
+                ]
+            }
+        }
+    },
+    "author": "Michael Bradley",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/staticinstance/react-redux-component-injection-example"
+    },
+    "dependencies": {
+        "axios": "^0.9.1",
+        "babel-core": "^6.4.5",
+        "babel-loader": "^6.2.2",
+        "babel-plugin-eval": "^1.0.1",
+        "babel-plugin-transform-es2015-destructuring": "^6.5.0",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-react": "^6.3.13",
+        "babel-preset-react-hmre": "^1.1.0",
+        "codemirror": "^5.11.0",
+        "css-loader": "^0.23.1",
+        "file-loader": "^0.8.5",
+        "guid": "0.0.12",
+        "html-webpack-plugin": "^2.8.1",
+        "lowdb": "^0.12.4",
+        "react": "^0.14.7",
+        "react-bootstrap": "^0.28.3",
+        "react-codemirror": "^0.2.5",
+        "react-dom": "^0.14.7",
+        "react-redux": "^4.4.0",
+        "redux": "^3.3.1",
+        "serve": "^1.4.0",
+        "style-loader": "^0.13.0",
+        "webpack": "^1.12.13",
+        "webpack-dev-server": "^1.14.1"
+    },
+    "devDependencies": {
+        "babel-jest": "*",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-react": "^6.3.13",
+        "enzyme": "^2.0.0",
+        "jest-cli": "*",
+        "jest-webpack-alias": "^2.2.0",
+        "react-addons-test-utils": "~0.14.0"
     }
-  },
-  "author": "Michael Bradley",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/staticinstance/react-redux-component-injection-example"
-  },
-  "dependencies": {
-    "axios": "^0.9.1",
-    "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.2",
-    "babel-plugin-eval": "^1.0.1",
-    "babel-plugin-transform-es2015-destructuring": "^6.5.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-react-hmre": "^1.1.0",
-    "codemirror": "^5.11.0",
-    "css-loader": "^0.23.1",
-    "file-loader": "^0.8.5",
-    "guid": "0.0.12",
-    "html-webpack-plugin": "^2.8.1",
-    "lowdb": "^0.12.4",
-    "react": "^0.14.7",
-    "react-bootstrap": "^0.28.3",
-    "react-codemirror": "^0.2.5",
-    "react-dom": "^0.14.7",
-    "react-redux": "^4.4.0",
-    "redux": "^3.3.1",
-    "serve": "^1.4.0",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.12.13",
-    "webpack-dev-server": "^1.14.1"
-  },
-  "devDependencies": {
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-jest": "*",
-    "jest-cli": "*",
-    "jest-webpack-alias": "^2.2.0",
-    "react-addons-test-utils": "~0.14.0"
-  }
 }
