@@ -11,7 +11,7 @@ import exampleMenubarPlugin from "./exampleMenubarPlugin";
 const low = require('lowdb')
 const storage = require('lowdb/browser')
 const db = low('db', {storage})
-import { Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
+import { PageHeader, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -143,6 +143,9 @@ class App extends Component {
 
         return (
             <div>
+                <PageHeader>
+                    Click the "enter dev mode" button, the "create plugin" dropdown will appear, choose a target, edit the boilerplate and see your plugin render.  
+                </PageHeader>
                 <div>
                     <button onClick={ () => this.toggleDevMode() }>
                         {this.state.devMode ? "exit " : "enter "} dev mode
