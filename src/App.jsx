@@ -144,7 +144,9 @@ class App extends Component {
         return (
             <div>
                 <PageHeader>
-                    Click the "enter dev mode" button, the "create plugin" dropdown will appear, choose a target, edit the boilerplate and see your plugin render.  
+                    <small>
+                        Click the "enter dev mode" button, the "create plugin" dropdown will appear, choose a target, edit the boilerplate and see your plugin render.  
+                    <small>
                 </PageHeader>
                 <div>
                     <button onClick={ () => this.toggleDevMode() }>
