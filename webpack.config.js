@@ -39,6 +39,9 @@ var config = {
       { include: path.join(__dirname, "src"),
         test: /\.jsx?$/,
         loaders: ["babel"]
+      },
+      { test: /\.css?$/,
+        loader: "style-loader!css-loader"
       }
     ]
   }
