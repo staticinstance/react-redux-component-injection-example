@@ -143,7 +143,7 @@ class App extends Component {
 
         return (
             <div>
-                <PageHeader>
+                <PageHeader style={{width: "80%"}}>
                     <small>
                         Click the "enter dev mode" button, the "create plugin" dropdown will appear, choose a target, edit the boilerplate and see your plugin render.  
                     </small>
