@@ -139,8 +139,7 @@ class App extends Component {
         const buttonsInstance = BUTTONS.map((title) => this.renderDropdownButton(title));
 
         const createButtonsInstance = this.renderCreatePluginButton();
-        console.log("PLUGIN_STORE", this.props.pluginStore);
-
+        
         return (
             <div>
                 <PageHeader style={{width: "80%"}}>
