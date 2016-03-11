@@ -24,9 +24,6 @@ const mapDispatchToProps = (dispatch) => {
       },
       saveLocal: (plugin) => {
           if(plugin){
-              if(plugin.src.indexOf("style=") != -1){
-                  //alert("You are adding custom styles")
-              }
 
               try{
                   var c = eval(Babel.transform(plugin.src, {presets: ['react', 'es2015']}).code)

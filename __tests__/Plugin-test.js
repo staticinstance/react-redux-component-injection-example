@@ -18,26 +18,20 @@ describe('Plugin', () => {
         location: 'target4',
         id: 1
     };
-    
+
     var devwrapper = shallow(
-      <Plugin plugin={pluginRecord} devMode={true} />
+        <Plugin plugin={pluginRecord} devMode={true} />
     );
-    
+
     var wrapper = shallow(
-      <Plugin plugin={pluginRecord} devMode={false} />
+        <Plugin plugin={pluginRecord} devMode={false} />
     );
     
-//   it('has an edit button in dev mode', () => {
-//     var pluginNode = ReactDOM.findDOMNode(plugin);
-//        var button = TestUtils.findRenderedDOMComponentWithTag(plugin, 'button');
-//         expect(button.textContent).toEqual('edit');
-//   });
-  
-  it('does not have an edit button in non devMode', () => {
-      expect(wrapper.find('button').contains('edit')).toBe(false);
-  });
-  
-  it('has an edit button in devMode', () => {
-      expect(devwrapper.find('button').contains('edit')).toBe(true);
-  });
+    it('does not have an edit button in non devMode', () => {
+        expect(wrapper.find('button').contains('edit')).toBe(false);
+    });
+
+    it('has an edit button in devMode', () => {
+        expect(devwrapper.find('button').contains('edit')).toBe(true);
+    });
 });
