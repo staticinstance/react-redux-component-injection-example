@@ -79,6 +79,7 @@
     "babel-preset-react": "^6.3.13",
     "css-loader": "^0.23.1",
     "enzyme": "^2.0.0",
+    "expect": "^1.14.0",
     "expect-jsx": "^2.3.0",
     "jest-cli": "*",
     "react-addons-test-utils": "~0.14.0"

@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
 import { shallow, mount, render } from 'enzyme';
 
 jest.dontMock('../src/Components/Plugin');
-const Plugin = require('../src/Components/Plugin');
+import Plugin from '../src/Components/Plugin';
 
 class externalPlugin extends Component {
     render() {
         return <div>hey</div>
     }
 }
-
-module.exports = Plugin;
 
 describe('Plugin', () => {
     var pluginRecord = {
@@ -21,6 +18,7 @@ describe('Plugin', () => {
         location: 'target4',
         id: 1
     };
+    
     var devwrapper = shallow(
       <Plugin plugin={pluginRecord} devMode={true} />
     );
