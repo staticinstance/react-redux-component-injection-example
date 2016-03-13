@@ -6,7 +6,7 @@
   "scripts": {
     "test": "BABEL_JEST_STAGE=0 jest --verbose",
     "dev": "webpack-dev-server",
-    "start": "NODE_ENV=development webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
