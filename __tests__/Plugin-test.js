@@ -15,7 +15,7 @@ class externalPlugin extends Component {
 describe('Plugin', () => {
     var pluginRecord = {
         cmp: externalPlugin,
-        src: '<div>hello</div>',
+        src: externalPlugin,
         location: 'target4',
         id: 1
     };
