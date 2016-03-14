@@ -27,7 +27,7 @@ class Plugin extends Component {
     getDisplayView(){
         return <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
     }
-    //todo pull this out into a functional component
+    //todo pull this out into a functional component to fix #5
     getDevModeView(){
         return <span>
                     <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
