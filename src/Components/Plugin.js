@@ -27,6 +27,7 @@ class Plugin extends Component {
     getDisplayView(){
         return <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
     }
+    //todo pull this out into a functional component
     getDevModeView(){
         return <span>
                     <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
@@ -36,7 +37,7 @@ class Plugin extends Component {
                                     <br/>
                                     <button 
                                         style={{float: "right"}}
-                                        onClick={() => this.onEditButtonClick() }>
+                                        onClick={ () => this.onEditButtonClick() }>
                                         edit
                                     </button>
                                     <br/><br/>
