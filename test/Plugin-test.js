@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
 import Plugin from '../src/Components/Plugin';
-
-jest.dontMock('../src/Components/Plugin');
-
 
 class externalPlugin extends Component {
     render() {
@@ -27,13 +25,12 @@ describe('Plugin', () => {
     var wrapper = shallow(
         <Plugin plugin={pluginRecord} devMode={false} />
     );
-    
   
     it('does not have an edit button in non devMode', () => {
-        expect(false).toBe(false);
+        expect(wrapper.find('button').contains('edit')).to.equal(false);
     });
 
     it('has an edit button in devMode', () => {
-        expect(devwrapper.find('button').contains('edit')).toBe(true);
+        expect(devwrapper.find('button').contains('edit')).to.equal(true);
     });
 });
