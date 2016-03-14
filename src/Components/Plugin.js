@@ -5,7 +5,7 @@ class Plugin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            edit: false,
+            edit: true,
             code: this.props.plugin.src
         }
     }
@@ -20,19 +20,25 @@ class Plugin extends Component {
         });
     }
     getDisplayView(){
-        return <this.props.plugin.cmp key={this.props.plugin.id} {...this.props}/>
+        return <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
     }
     getDevModeView(){
-        return <span><this.props.plugin.cmp key={this.props.plugin.id} {...this.props}/>
-            {this.props.devMode ?
-                !this.state.edit ?
-                    <div><br/>
-                        <button style={{float: "right"}} onClick={() => this.setState({edit: !this.state.edit}) }>edit</button>
-                        <br/><br/>
-                    </div> : null
-                : null
-            }
-            </span>
+        return <span>
+                    <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
+                        {this.props.devMode ?
+                            !this.state.edit ?
+                                <div>
+                                    <br/>
+                                    <button 
+                                        style={{float: "right"}}
+                                        onClick={() => this.setState({edit: !this.state.edit}) }>
+                                        edit
+                                    </button>
+                                    <br/><br/>
+                                </div> : null
+                            : null
+                        }
+                </span>
     }
     getView(){
         if(this.props.devMode && this.state.edit){

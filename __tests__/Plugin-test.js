@@ -5,7 +5,6 @@ import Plugin from '../src/Components/Plugin';
 
 jest.dontMock('../src/Components/Plugin');
 
-
 class externalPlugin extends Component {
     render() {
         return <div>hey</div>
@@ -27,7 +26,6 @@ describe('Plugin', () => {
     var wrapper = shallow(
         <Plugin plugin={pluginRecord} devMode={false} />
     );
-    
   
     it('does not have an edit button in non devMode', () => {
         expect(false).toBe(false);
