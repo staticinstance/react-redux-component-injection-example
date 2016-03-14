@@ -5,7 +5,7 @@ class Plugin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            edit: true,
+            edit: false,
             code: this.props.plugin.src
         }
     }
