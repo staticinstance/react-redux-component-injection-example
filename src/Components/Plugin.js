@@ -14,6 +14,11 @@ class Plugin extends Component {
             this.setState({edit: false})
         }
     }
+    onEditButtonClick(){
+        this.setState({
+            edit: !this.state.edit
+        });
+    }
     closeEditor(){
         this.setState({
             edit: false
@@ -31,7 +36,7 @@ class Plugin extends Component {
                                     <br/>
                                     <button 
                                         style={{float: "right"}}
-                                        onClick={() => this.setState({edit: !this.state.edit}) }>
+                                        onClick={() => this.onEditButtonClick() }>
                                         edit
                                     </button>
                                     <br/><br/>

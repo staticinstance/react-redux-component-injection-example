@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { expect } from 'chai';
 import { shallow, mount, render } from 'enzyme';
+import sinon from 'sinon';
+import chai, { expect } from 'chai';
+import chaiEnzyme from 'chai-enzyme';
+
+chai.use(chaiEnzyme())
+
 import Plugin from '../src/Components/Plugin';
+import PluginEditView from '../src/Components/PluginEditView';
+
 
 class externalPlugin extends Component {
     render() {
@@ -18,8 +25,14 @@ describe('Plugin', () => {
         id: 1
     };
 
+    Plugin.prototype.onEditButtonClick = sinon.spy();
+        
     var devwrapper = shallow(
         <Plugin plugin={pluginRecord} devMode={true} />
+    );
+    
+    var editwrapper = shallow(
+        <PluginEditView plugin={pluginRecord} devMode={true} edit={true} />
     );
 
     var wrapper = shallow(
@@ -33,4 +46,14 @@ describe('Plugin', () => {
     it('has an edit button in devMode', () => {
         expect(devwrapper.find('button').contains('edit')).to.equal(true);
     });
+    
+    it('has a save button after clicking the edit button', () => {
+       expect(editwrapper.find('button').contains('save')).to.equal(true);
+    })
+     
+    it('simulates click events', () => {
+        devwrapper.find('button').simulate('click');
+        expect(Plugin.prototype.onEditButtonClick.called).to.equal(true);
+    });
+
 });

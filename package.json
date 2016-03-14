@@ -55,11 +55,13 @@
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.7.2",
     "chai": "^3.5.0",
+    "chai-enzyme": "^0.4.1",
     "css-loader": "^0.23.1",
     "enzyme": "^2.0.0",
     "expect": "^1.14.0",
     "expect-jsx": "^2.3.0",
     "mocha": "^2.4.5",
-    "react-addons-test-utils": "~0.14.0"
+    "react-addons-test-utils": "~0.14.0",
+    "sinon": "^1.17.3"
   }
 }
