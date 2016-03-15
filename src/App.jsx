@@ -4,7 +4,7 @@ import Codemirror from "react-codemirror";
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/markdown/markdown';
-import './css/codemirror.css';
+import '../css/codemirror.css';
 import { Plugin, PluginList } from "./Components"
 import examplePlugin from "./examplePlugin";
 import exampleMenubarPlugin from "./exampleMenubarPlugin";
