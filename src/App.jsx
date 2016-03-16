@@ -4,7 +4,7 @@ import Codemirror from "react-codemirror";
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/markdown/markdown';
-import '../css/codemirror.css';
+import '../src/css/codemirror.css';
 import { Plugin, PluginList } from "./Components"
 import examplePlugin from "./examplePlugin";
 import exampleMenubarPlugin from "./exampleMenubarPlugin";
@@ -12,7 +12,6 @@ const low = require('lowdb')
 const storage = require('lowdb/browser')
 const db = low('db', {storage})
 import { PageHeader, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
-
 
 class App extends Component {
     constructor(props) {

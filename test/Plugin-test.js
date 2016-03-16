@@ -38,7 +38,7 @@ describe('Plugin', () => {
     var wrapper = shallow(
         <Plugin plugin={pluginRecord} devMode={false} />
     );
-  
+ 
     it('does not have an edit button in non devMode', () => {
         expect(wrapper.find('button').contains('edit')).to.equal(false);
     });
