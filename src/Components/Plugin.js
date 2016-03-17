@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PluginEditView from "../Components/PluginEditView";
+import PluginDevView from "../Components/PluginDevView";
 
 class Plugin extends Component {
     constructor(props) {
@@ -24,28 +25,6 @@ class Plugin extends Component {
             edit: false
         });
     }
-    getDisplayView(){
-        return <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
-    }
-    //todo pull this out into a functional component to fix #5
-    getDevModeView(){
-        return <span>
-                    <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
-                        {this.props.devMode ?
-                            !this.state.edit ?
-                                <div>
-                                    <br/>
-                                    <button 
-                                        style={{float: "right"}}
-                                        onClick={ () => this.onEditButtonClick() }>
-                                        edit
-                                    </button>
-                                    <br/><br/>
-                                </div> : null
-                            : null
-                        }
-                </span>
-    }
     getView(){
         if(this.props.devMode && this.state.edit){
             return <PluginEditView 
@@ -53,9 +32,11 @@ class Plugin extends Component {
                 onSaveLocal={ (item) => this.props.saveLocal(item) } 
                 { ...this.props } />;
         }else if(this.props.devMode) {
-            return this.getDevModeView();
+            return <PluginDevView 
+                onEditButtonClick={ () => this.onEditButtonClick() } 
+                { ...this.props } />;
         }else{
-            return this.getDisplayView();
+            return <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
         }
     }
     render() {
