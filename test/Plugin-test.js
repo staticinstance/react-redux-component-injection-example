@@ -9,6 +9,7 @@ chai.use(chaiEnzyme())
 
 import Plugin from '../src/Components/Plugin';
 import PluginEditView from '../src/Components/PluginEditView';
+import PluginDevView from '../src/Components/PluginDevView';
 
 
 class externalPlugin extends Component {
@@ -25,10 +26,10 @@ describe('Plugin', () => {
         id: 1
     };
 
-    Plugin.prototype.onEditButtonClick = sinon.spy();
+    const onButtonClick = sinon.spy();
         
     var devwrapper = shallow(
-        <Plugin plugin={pluginRecord} devMode={true} />
+        <PluginDevView plugin={pluginRecord} onEditButtonClick={onButtonClick} />
     );
     
     var editwrapper = shallow(
@@ -53,7 +54,7 @@ describe('Plugin', () => {
      
     it('simulates click events', () => {
         devwrapper.find('button').simulate('click');
-        expect(Plugin.prototype.onEditButtonClick.called).to.equal(true);
+        expect(onButtonClick.called).to.equal(true);
     });
 
 });
