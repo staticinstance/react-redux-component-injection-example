@@ -30,6 +30,7 @@ class Plugin extends Component {
             return <PluginEditView 
                 onCloseEditor={ () => this.closeEditor() } 
                 onSaveLocal={ (item) => this.props.saveLocal(item) } 
+                onDelete={ (item) => this.props.delete(item) }
                 { ...this.props } />;
         }else if(this.props.devMode) {
             return <PluginDevView 
