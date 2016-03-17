@@ -15,7 +15,7 @@ class Plugin extends Component {
             this.setState({edit: false})
         }
     }
-    onEditButtonClick(){
+    editButtonClick(){
         this.setState({
             edit: !this.state.edit
         });
@@ -33,7 +33,7 @@ class Plugin extends Component {
                 { ...this.props } />;
         }else if(this.props.devMode) {
             return <PluginDevView 
-                onEditButtonClick={ () => this.onEditButtonClick() } 
+                onEditButtonClick={ () => this.editButtonClick() } 
                 { ...this.props } />;
         }else{
             return <this.props.plugin.cmp key={ this.props.plugin.id } { ...this.props }/>
