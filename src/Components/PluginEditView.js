@@ -23,6 +23,12 @@ class PluginEditView extends Component {
                     <br/>
                     <Codemirror style={{"height":"300px", "width":"500px"}} value={this.state.code} onChange={(code) => this.updateCode(code)} options={{lineNumbers: true, mode: 'javascript'}} />
                     <br/>
+                    <button style={{float: "left"}}
+                            onClick={ () => { 
+                                this.props.onCloseEditor()
+                                this.props.onDelete(this.props.plugin) }}>
+                        delete
+                    </button>
                     <button style={{float: "right"}}
                             onClick={ () => { this.props.onCloseEditor() }}>
                         close

@@ -47,6 +47,16 @@ const mapDispatchToProps = (dispatch) => {
                   dispatch(updatePlugin(plugin));
               }
           }
+      },
+      delete: (plugin) => {
+          if(plugin){
+
+              var result = db('plugins')
+                  .remove({ id: plugin.id })
+              dispatch(unregisterPlugin(plugin));   
+              db.write()
+              
+          }
       }
   }
 }
