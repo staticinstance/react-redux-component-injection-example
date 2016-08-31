@@ -70,4 +70,4 @@ React.createClass({
 })
 `
 
-export default exampleCode;
+export default examplePlugin;
