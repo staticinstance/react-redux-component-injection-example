@@ -4,11 +4,10 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 var PORT = process.env.PORT || 8080;
 
-console.log(PORT)
 
-module.exports = {
+var config = {
   cache: true,
-  entry: [	
+  entry: [
     "webpack-dev-server/client?http://localhost:" + PORT,
     "webpack/hot/only-dev-server",
     "./src/main.jsx"
@@ -43,22 +42,14 @@ module.exports = {
       },
       { test: /\.css?$/,
         loader: "style-loader!css-loader"
-      },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file"
-      },
-      { test: /\.(woff|woff2)$/,
-        loader:"url?prefix=font/&limit=5000"
-      },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=application/octet-stream"
-      },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "url?limit=10000&mimetype=image/svg+xml"
-      },
-      { test: /\.png$/,
-        loader: "url-loader?mimetype=image/png"
       }
     ]
   }
 }
+
+if (process.env.NODE_ENV === "production") {
+  config.entry = ["./src/main.jsx"]; // remove webpack-dev-server-artifacts
+}
+
+module.exports = config;
+

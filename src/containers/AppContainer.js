@@ -1,6 +1,8 @@
 import App from "../App";
 import { connect } from "react-redux";
 import { registerPlugin, unregisterPlugin, fetchPlugins, updatePlugin } from "../Actions/actions";
+import axios from "axios";
+import { MenuItem } from 'react-bootstrap';
 const low = require('lowdb')
 const storage = require('lowdb/browser')
 const db = low('db', { storage })
@@ -14,15 +16,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+      axios,
+      MenuItem,
       onRegisterPlugin: (plugin) => dispatch(registerPlugin(plugin)),
       fetchPlugins: () => {
           db('plugins').value().map((item) => dispatch(registerPlugin(item)))
       },
       saveLocal: (plugin) => {
           if(plugin){
-              if(plugin.src.indexOf("style=") != -1){
-                  alert("You are adding custom styles")
-              }
 
               try{
                   var c = eval(Babel.transform(plugin.src, {presets: ['react', 'es2015']}).code)
@@ -45,6 +46,16 @@ const mapDispatchToProps = (dispatch) => {
                       .value();
                   dispatch(updatePlugin(plugin));
               }
+          }
+      },
+      delete: (plugin) => {
+          if(plugin){
+
+              var result = db('plugins')
+                  .remove({ id: plugin.id })
+              dispatch(unregisterPlugin(plugin));   
+              db.write()
+              
           }
       }
   }
